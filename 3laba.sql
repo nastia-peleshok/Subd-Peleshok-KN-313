@@ -1,0 +1,27 @@
+SELECT TABLE_NAME from INFORMATION_SCHEMA.TABLES
+Exec sp_columns Order1
+
+ALTER TABLE Order1 DROP CONSTRAINT FKClient  
+ALTER TABLE Order1 DROP COLUMN Id_client 
+ALTER TABLE Order1 ALTER COLUMN Date_order datetime2 NOT NULL  
+ALTER TABLE Client ALTER COLUMN Last_name char(50) NOT NULL; 
+ALTER TABLE Client ADD Client_registration_time INTEGER NULL
+ALTER TABLE Client ADD CONSTRAINT UC_Client_name UNIQUE(Last_name_client,First_name_client,Phone_client); 
+ALTER TABLE Order1
+DROP CONSTRAINT FEquipment_rental
+ALTER TABLE Order1
+ADD CONSTRAINT  FEquipment_rental FOREIGN KEY (Id_equipment) 
+REFERENCES Equipment_rental ON DELETE CASCADE ON UPDATE CASCADE
+ALTER TABLE Order1
+DROP CONSTRAINT FSki_slope
+ALTER TABLE Order1
+ADD CONSTRAINT  FSki_slope FOREIGN KEY (Id_slope) 
+REFERENCES Ski_slope ON DELETE CASCADE ON UPDATE CASCADE
+
+
+
+
+exec sp_columns Order1
+
+
+
